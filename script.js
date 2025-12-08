@@ -1,110 +1,46 @@
-// class Sketch{
-//     constructor(){
-//         this.character="doremon";
-//         this.color="blue";
-//         this.someFnc = function () {};
+// - Introduction to Asynchrony in Javascript.
+// - Introduction to 'callbacks' and Problems in Callbacks
+// - Understanding 'promises' - 'pending' 'resolved' , 
 
-//     }
+
+
+// js  -> single threaded hai
+// ek kaam ek baar main kar paayegi
+
+// synchronous approach
+// asynchronous approach
+
+
+// - Introduction to 'callbacks' and Problems in Callbacks
+// callback -> ek function jo turnat nhi chalega ye chalega jab koe kam complete hoga.
+
+// setTimeout(function(){
+//     console.log("Hey")
+// },2000)
+
+
+
+
+// function abcd(fn){
+//     fn(function (fn3){
+//         fn3(function (fn5){
+//             fn5()
+//         });
+//     })
 // }
-// Sketch.prototype.speak = function () {};
-// Sketch.prototype.walk = function () {};
-// let Sketch1=new Sketch();
-
-// prototype- is a shared memory
-
-
-//   this Keyword  -📢✍✍
-
-// global  ->  window
-// function -> window
-// es5 function inside object -> object
-// es5 function inside es5 function inside object -> window
-// es6 function inside es5 function inside object -> object
+// abcd(function(fn2){
+//    fn2(function(fn4){
+//     console.log("holoel")
+//    })
+// })
 
 
-// console.log(this)
-// output- window👈
-
-
-// function abcd (){
-//     console.log(this)
-// }
-// abcd():
-// output - window👈
-
-
-
-// let obj= {
-//     name: "manish",
-//     fnc: function(){
-//         console.log(this)
-//     }
-// }
-// obj.fnc();
-// output - Object  👈👈
-
-
-// let obj={
-//     name:"maisn",
-//     fnc:()=>{
-//         console.log(this);
-//     },
-// };
-
-// obj.fnc();
-// Output - window👈👈
-
-
-// es5 function inside es5 function inside object -> window
-
-// let obj={
-//     name:"manish",
-//     fnc: function(){
-//         function abcd(){
-//             console.log(this)
-//         }
-//         abcd();
-//     },
-    
-// };
-// obj.fnc();
-
-
-// Call , apply, bind 📢✍
-
-// ek function me (this ) ki vlaue window hoti hai, agr app chaahte ho ki  vlaue window naa ho ki wo value window naa ho 
-// par koe aur object ho tb app use kr skte ho call apply bind ka.
-
-// call✍💡
-// let obj={
-//     name:"manish",
-// };
-// function abcd(){
-//     console.log(this);
-// }
-// abcd.call(obj);
-
-// apply💡✍
-// let obj={
-//     name:"manish",
-// }
-// function abcd(a,b,c){
-//     console.log(this,a,b,c)
-// };
-// abcd.apply(obj,[1,2,3])
-
-
-// bind
-
-// let obj={
-//     name:'manish',
-// }
-// function abcd(a,b,c){
-//     console.log(this,a,b,c);
-// }
-// let newfnc= abcd.bind(obj,1,2,3);
-// newfnc();
-
-// call -> fnc chaltata hai and this ki vlaue set karta hai .
-// apply -> wahi karta hai jo call karta hai and arguments main pahli vluae this ki and doosri vlaue arry hot hai .👈
-// bind -> wahi krta hai jo call krta hai and apko nya fnc deta hai👈
+function amintseDetailslao(address, cb){
+    console.log("fetching details...")
+    setTimeout(()=>{
+        cb({lat:23.33, lang:234.444});
+    },3000)
+};
+amintseDetailslao("siwan chock road",function(deatils){
+    console.log(deatils)
+})
