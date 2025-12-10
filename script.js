@@ -1,123 +1,78 @@
-// Exercise 1 (very easy - warming up)
-// Ek function banao afterDelay
-// Requirements:
-// Ye funtion 2 cheezein lega:
-// time (milliseconds)
-// callback function 
-// Given time ke baad callback call kare
-// Callback ke andar "Callback executed" print hona chahiye
-// Use case socho:
-// "2 second baad lek kam karna hai"
-// Goal:
-// Samjhna ki callback delay ke baad kaise execute hota hai
-// Ye setTimeout + callback connection hai
+// promises
+// async await
+// settimeout and setinterval
 
-// function afterDelay(time,cb){
+
+// facebook -> mera data 
+// resolve -> data aya to resolve
+// reject -> data nhi aya to reject
+
+// const prm=new Promise((resolve,reject)=>{
 //     setTimeout(()=>{
-//         cb();
-//     },time)
-// }
-// afterDelay(3000,function(){
-//     console.log("callback executed")
-// });
-
-// Exercise 2 (Intermediate -data flow)
-// Ek function banao getUser
-// Requirements :
-// 1 second ke baad callback ko ek object de:
-// id
-// username
-// Then
-// Callback ke ander ek aur function call karo getUserPosts
-// userId lega
-// 1 second ke baad callback to posts ka array de
-// Final output:
-// User ka username print ho
-// fir uske posts print ho 
-// Goal:
-// Samajhna ki ek async ka result next ko kasie milta hai.
-
-// function getUser(username,cb){
-//     console.log("getting user details...")
-//     setTimeout(()=>{
-//         console.log("geting user details...")
-//         cb({id:1, username:"Manish"})
-//     },1000)
-// }
-
-// function getUserPosts(id,cb){
-//     setTimeout(()=>{
-//         cb(["helo","good da", "fack you"]);
-//     },2000)
-// }
-//  getUser("Manhsi",function(data){
-//     getUserPosts(data.id, function(allposts){
-//         console.log(data.username, allposts)
-//     });
-//  });
-
-//2. 👈
-
-// function instagramSeDataLaao(username,cb){
-//     setTimeout(()=>{
-//         cb({uniquenum: 1234, username: "Manish"});
-//     },2000)
-// }
-
-// function metaPeJaaoDataLaao(uniqunum,cb){
-//     setTimeout(()=>{
-//         cb(["img1","img2"]);
-//     },4000)
-// }
-// instagramSeDataLaao("Manish",function(data){
-//     metaPeJaaoDataLaao(data.uniqunum,function(imges){
-//         console.log(imges)
-//     })
+//         resolve();
+//     },3000)
+// })
+// prm.then(function(){
+//     console.log("resolved")
+// })
+// .catch(function (){
+//     console.log("rejected")
 // })
 
 
-// Exercise 3 (Intermediate - callback dependency, thoda painful)📢
-// Teen functions banao:
-// loginUser
-// 1 second baad callback to user object de fetchPermissions
-// userId lega
-// 1 second baad callback ko permissions array de
-// loadDashboard
-// permission lega
-// 1 second baad callback to "Dashboard loaded" bole 
-// Flow:
-// Pehle loginUser
-// Uske andar fetchPermissions
-// Uske andar loadDashboard
-// Final output console mein print ho 
-// Gaol:
-// Callback nesting ko feel karna
-// Yhi structure baad mein callback hell bante hai.
+// let prm=new Promise((resolve,reject)=>{
+//     // logic to go to meta and get data
+//     // if data aaya -> resolve
+//     // else reject
 
-function loginUser(username, cb){
-     console.log("logging in user...")
-    setTimeout(()=>{
-        cb({id:12, username:"manish"});
-    },1000)
-}
+// })
+// prm.then(function(){
 
-function fetchPermissions(id,cb){
-   console.log("fetching permission...")
-    setTimeout(()=>{
-        cb(["read","write","delete"])
-    },2000)
-}
-function loadDashboard(permission,cb){
-    console.log("loading dashboard...")
-    setTimeout(()=>{
-        cb();
-    },2000)
-}
+// })
 
-loginUser("Manish",function(userdata){
-    fetchPermissions(userdata.id, function(permission){
-        loadDashboard(permission,function(){
-            console.log("😚🤑dashboard loaded")
-        })
-    })
-})
+
+// fetch se kisi bhi url par jaa skte hai
+// fetch(`https://randomuser.me/api/`)
+// .then((raw)=> raw.json ())
+// .then((data)=>{
+//     console.log(data.results[0].name.first);
+// })
+// .catch((err)=>{
+//     console.log(err)
+// })
+
+
+
+// fetch ka data readable nhi hota 
+// useee json banake readble karte hai
+// iske baad jo data milt hai wo readable hota hai
+//
+
+
+
+// async await📢📢
+
+// async function abcd() {
+//     let raw= await fetch (`https://randomuser.me/api/`);
+//     let data=await raw.json();
+//     console.log(data)
+// }
+// abcd();
+
+
+function getNum(){
+    return new Promise((resolve,reject)=>{
+ setTimeout(()=>{
+      let num= Math.floor(Math.random()*10);
+   if(num < 5){
+    resolve(true);
+   }
+   else reject(false)
+ },3000)
+});
+}
+async function abcd() {
+    let v=await getNum();
+    console.log(v)
+}
+abcd();
