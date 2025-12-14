@@ -1,78 +1,57 @@
-// promises
-// async await
-// settimeout and setinterval
+// - Introduction to Error Handling
+// - Common types of errors in Javascript- [`Syntax error`, Runtime errors`, Logical, errors]
+// - Understanding the Error object -[ message,name,stack]
+// - Handling exceptions using `try-catch, try-catch-finally`
+// -How to Throw Errors in Javascript
+// - Error Handling in Asynchronous Code
 
 
-// facebook -> mera data 
-// resolve -> data aya to resolve
-// reject -> data nhi aya to reject
+// syntax error -> aapne code mein likhte wakt glti kardi
 
-// const prm=new Promise((resolve,reject)=>{
-//     setTimeout(()=>{
-//         resolve();
-//     },3000)
-// })
-// prm.then(function(){
-//     console.log("resolved")
-// })
-// .catch(function (){
-//     console.log("rejected")
-// })
+// a let=12;
+// console.log(a)
 
+// runtime error -> code likhte waqt error nhi hai chalte waqt error hai
 
-// let prm=new Promise((resolve,reject)=>{
-//     // logic to go to meta and get data
-//     // if data aaya -> resolve
-//     // else reject
-
-// })
-// prm.then(function(){
-
-// })
-
-
-// fetch se kisi bhi url par jaa skte hai
-// fetch(`https://randomuser.me/api/`)
-// .then((raw)=> raw.json ())
-// .then((data)=>{
-//     console.log(data.results[0].name.first);
-// })
-// .catch((err)=>{
-//     console.log(err)
-// })
-
-
-
-// fetch ka data readable nhi hota 
-// useee json banake readble karte hai
-// iske baad jo data milt hai wo readable hota hai
-//
-
-
-
-// async await📢📢
-
-// async function abcd() {
-//     let raw= await fetch (`https://randomuser.me/api/`);
-//     let data=await raw.json();
-//     console.log(data)
+// function abcd(){
+//     let a=12;
+//     console.log(a.name.first);
 // }
 // abcd();
 
+// logical errors -> apke code ko kuch chahiye tha par wo kar kcuh aur raha hai.
 
-function getNum(){
-    return new Promise((resolve,reject)=>{
- setTimeout(()=>{
-      let num= Math.floor(Math.random()*10);
-   if(num < 5){
-    resolve(true);
-   }
-   else reject(false)
- },3000)
-});
+// function add(a,b){
+//     return a-b;
+// }
+// console.log(add(1,2))
+
+
+// Try and catch =>  agr error aa bhi gya  to chlega.
+
+
+// - Understanding the Error object -[ message,name,stack]📢
+
+// try{
+//     let a=12;
+//     console.log(a.name.message);
+// }
+// catch(err){
+//     console.log(err)
+    
+// }
+// finally{
+//     console.log("helololo")
+// }
+
+// -How to Throw Errors in Javascript📢
+
+try{
+    let a=12;
+    console.log(a.name.age)
 }
-async function abcd() {
-    let v=await getNum();
-    console.log(v)
+catch (err){
+    // throw new Error("Something went from our side, please wait for some time")
+    console.error(  new Error("Something went from our side, please wait for some time"))
+
 }
-abcd();
